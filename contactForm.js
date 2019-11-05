@@ -27,36 +27,36 @@ module.exports.handler = async (event, context, callback) => {
 
   const params = {
     Destination: {
-        ToAddresses: [process.env.TO_ADDRESS]
+      ToAddresses: [process.env.TO_ADDRESS]
     },
     Message: {
       Body: {
         Html: {
           Charset: 'UTF-8',
-          Data: emailBody,
+          Data: emailBody
         }
       },
-      Subject: { 
+      Subject: {
         Charset: 'UTF-8',
-        Data: `Contact Form from Portfolio Site`
+        Data: 'Contact Form from Portfolio Site'
       }
     },
     ReplyToAddresses: [contactEmail],
     Source: `=?utf-8?B?${Buffer.from(contactName).toString('base64')}?= <${process.env.FROM_ADDRESS}>`
   }
 
-  const response = await ses.sendEmail(params).promise();
+  const response = await ses.sendEmail(params).promise()
 
-  console.log(response);
-  
+  console.log(response)
+
   return {
     statusCode: 200,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Credentials': true
     },
     body: JSON.stringify({
-      message: `Thanks for your message ${firstName}!`,
+      message: `Thanks for your message ${firstName}!`
     })
   }
 }
