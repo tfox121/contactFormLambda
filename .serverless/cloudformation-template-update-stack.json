@@ -55,7 +55,7 @@
     "ContactFormLambdaLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/contactFormLambda-dev-contactFormLambda"
+        "LogGroupName": "/aws/lambda/contactFormLambda-prod-contactFormLambda"
       }
     },
     "IamRoleLambdaExecution": {
@@ -83,7 +83,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "dev",
+                  "prod",
                   "contactFormLambda",
                   "lambda"
                 ]
@@ -99,7 +99,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/contactFormLambda-dev*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/contactFormLambda-prod*:*"
                     }
                   ]
                 },
@@ -110,7 +110,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/contactFormLambda-dev*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/contactFormLambda-prod*:*:*"
                     }
                   ]
                 },
@@ -140,7 +140,7 @@
             "-",
             [
               "contactFormLambda",
-              "dev",
+              "prod",
               {
                 "Ref": "AWS::Region"
               },
@@ -157,9 +157,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/contactFormLambda/dev/1572898967859-2019-11-04T20:22:47.859Z/contactFormLambda.zip"
+          "S3Key": "serverless/contactFormLambda/prod/1573500096979-2019-11-11T19:21:36.979Z/contactFormLambda.zip"
         },
-        "FunctionName": "contactFormLambda-dev-contactFormLambda",
+        "FunctionName": "contactFormLambda-prod-contactFormLambda",
         "Handler": "contactForm.handler",
         "MemorySize": 1024,
         "Role": {
@@ -184,20 +184,20 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "ContactFormLambdaLambdaVersionFhb6ATvJ5vDCCjBEa1Ch7Iv9Zoqyv2CvQeEz1eFV4": {
+    "ContactFormLambdaLambdaVersionYUt7wDTOCKGLGbLXEzGHGirT9pNEKZ95GSqR5XV3dY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ContactFormLambdaLambdaFunction"
         },
-        "CodeSha256": "f+ImKeseRjTwIhUi8nXpowF7JKYrxprYRx6zShDZ+DY="
+        "CodeSha256": "sWZKz1pJF691BvfifIjz8EalkiAH02tGRQlI/FNfUq4="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "dev-contactFormLambda",
+        "Name": "prod-contactFormLambda",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -310,13 +310,13 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1572898945976": {
+    "ApiGatewayDeployment1573500056851": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         },
-        "StageName": "dev"
+        "StageName": "prod"
       },
       "DependsOn": [
         "ApiGatewayMethodContactOptions",
@@ -370,7 +370,7 @@
     "ContactFormLambdaLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ContactFormLambdaLambdaVersionFhb6ATvJ5vDCCjBEa1Ch7Iv9Zoqyv2CvQeEz1eFV4"
+        "Ref": "ContactFormLambdaLambdaVersionYUt7wDTOCKGLGbLXEzGHGirT9pNEKZ95GSqR5XV3dY"
       }
     },
     "ServiceEndpoint": {
@@ -391,7 +391,7 @@
             {
               "Ref": "AWS::URLSuffix"
             },
-            "/dev"
+            "/prod"
           ]
         ]
       }

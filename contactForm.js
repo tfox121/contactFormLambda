@@ -15,15 +15,7 @@ module.exports.handler = async (event, context, callback) => {
   const contactEmail = JSON.parse(event.body).email
   const contactMessage = JSON.parse(event.body).message
 
-  const emailBody = `
-  <!DOCTYPE html>
-  <html>
-    <head></head>
-    <body>
-    <p>${contactMessage}</p>
-    </body>
-  </html>
-`
+  const todaysDate = new Date().toJSON().slice(0, 10).split('-').reverse().join('/')
 
   const params = {
     Destination: {
@@ -31,14 +23,14 @@ module.exports.handler = async (event, context, callback) => {
     },
     Message: {
       Body: {
-        Html: {
-          Charset: 'UTF-8',
-          Data: emailBody
+        Text: {
+          Data: contactMessage,
+          Charset: 'UTF-8'
         }
       },
       Subject: {
         Charset: 'UTF-8',
-        Data: 'Contact Form from Portfolio Site'
+        Data: `Contact Form from Portfolio Site ${todaysDate}`
       }
     },
     ReplyToAddresses: [contactEmail],
