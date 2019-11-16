@@ -7,7 +7,7 @@ A simple AWS Lambda function, deployed using Serverless, which listens for POST 
 
 contactFormLambda is compatible with Node.js 10.16+
 
-You will need to already have an AWS account and AWS CLI setup on your computer, instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv1.html).
+You will need to already have an AWS account and AWS CLI set up on your computer, instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv1.html).
 
 ### On Linux
 
