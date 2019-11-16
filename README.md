@@ -38,3 +38,10 @@ $ npx sls deploy
 ```
 
 You will be supplied with an endpoint to use for your contact form POST requests which, once configured, should be forwarded on to your chosen email address.
+
+Once you're happy with the funtionality, feel free to deploy it to production using:
+```sh
+$ npx sls deploy --stage prod
+```
+
+Make sure you change where the POST form points to as the endpoint will be different.
